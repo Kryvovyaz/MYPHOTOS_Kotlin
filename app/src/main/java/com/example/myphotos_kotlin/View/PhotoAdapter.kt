@@ -16,17 +16,17 @@ class PhotoAdapter(val list: List<Photo>, val whattoDoOnClicks: (Int) -> Unit) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.photo_view_holder,parent,false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.photo_view_holder, parent, false)
         return PhotoViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         holder.textViewHolder.text = list[position].title
         Picasso.get().load(list.get(position).url).into(holder.imageViewHolder)
-        holder.itemView.setOnClickListener{whattoDoOnClicks(position)}
+        holder.itemView.setOnClickListener { whattoDoOnClicks(position) }
 
     }
-
 
     override fun getItemCount(): Int {
         return list.size

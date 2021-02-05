@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface PhotoService {
     @GET("/photos")
- fun getPhotos(): Call<List<Photo>>
+    fun getPhotos(): Call<List<Photo>>
 }
