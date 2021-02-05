@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //RetrofitClient.getInstanceOfRetrofit()?.create(PhotoService::class.java)
         recyclerView = findViewById(R.id.recyclerview)
-
         val getPhotoService = RetrofitClient.instance?.create(PhotoService::class.java)
 
         getPhotoService?.getPhotos()?.enqueue(object : Callback<List<Photo>> {
@@ -45,7 +44,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Photo>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "HOUSTON WE HAVE A PROBLEM", Toast.LENGTH_SHORT)
+                Toast.makeText(this@MainActivity, "HOUSTON WE HAVE A PROBLEM"
+                    , Toast.LENGTH_SHORT)
                     .show()
             }
         })
