@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = PhotoAdapter(photos) {
 
             val result = Bundle()
-            result.putParcelable(KEY_PHOTO_BUNDLE, photos.get(it))
+            result.putParcelable(KEY_PHOTO_BUNDLE, photos[it])
             val intent = Intent(this, SinglePhotoActivity::class.java)
 
             intent.putExtras(result)
