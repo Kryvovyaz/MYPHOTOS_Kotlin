@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val KEY_PHOTO_BUNDLE = "key_position"
-
-
     }
 
     lateinit var list: List<Photo>
@@ -39,36 +37,29 @@ class MainActivity : AppCompatActivity() {
 
         getPhotoService?.getPhotos()?.enqueue(object : Callback<List<Photo>> {
             override fun onResponse(call: Call<List<Photo>>, response: Response<List<Photo>>) {
-                val photoListFromResponse = response.body()
-                list = response.body()!!
-                CreateRecycler()
-                photoListFromResponse?.forEach {
-                    Log.d("MyApp", "${it.albumId}&&${it.thumbnailUrl}")
+                response.body()?.let { callPhotos ->
+                    //  list = response.body()!!
+                    CreateRecycler(callPhotos)
+
                 }
             }
 
             override fun onFailure(call: Call<List<Photo>>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "HOUSTON WE HAVE A PROBLEM", Toast.LENGTH_SHORT)
                     .show()
-
             }
-
         })
-
-
     }
 
-    fun CreateRecycler() {
-        val adapter = PhotoAdapter(list) {
+    fun CreateRecycler(photos: List<Photo>) {
+        val adapter = PhotoAdapter(photos) {
 
             val result = Bundle()
-            result.putParcelable(KEY_PHOTO_BUNDLE, list[it])
+            result.putParcelable(KEY_PHOTO_BUNDLE, photos.get(it))
             val intent = Intent(this, SinglePhotoActivity::class.java)
 
             intent.putExtras(result)
             startActivity(intent)
-
-
         }
         val layoutManager = LinearLayoutManager(this)
 
