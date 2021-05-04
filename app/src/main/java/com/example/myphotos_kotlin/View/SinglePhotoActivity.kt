@@ -19,18 +19,13 @@ class SinglePhotoActivity : AppCompatActivity() {
         textView = findViewById(R.id.single)
         imageView = findViewById(R.id.single_image)
         val intenet = intent
-
-        var photo = intenet.getParcelableExtra<Photo>(MainActivity.KEY_PHOTO_BUNDLE)
+        val photo = intenet.getParcelableExtra<Photo>(MainActivity.KEY_PHOTO_BUNDLE)
         //Implement object from Bundle
         textView.text = photo?.title
-
-
         if (photo != null) {
             Picasso.get()
-
                 .load(photo.url)
                 .into(imageView)
         }
-
     }
 }

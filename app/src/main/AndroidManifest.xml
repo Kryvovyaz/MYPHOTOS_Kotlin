@@ -14,7 +14,9 @@
         <activity
             android:name=".View.SinglePhotoActivity"
             android:label="@string/title_activity_single_photo"
-            android:theme="@style/Theme.MYPHOTOS_Kotlin.NoActionBar"></activity>
+            android:theme="@style/Theme.MYPHOTOS_Kotlin.NoActionBar">
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

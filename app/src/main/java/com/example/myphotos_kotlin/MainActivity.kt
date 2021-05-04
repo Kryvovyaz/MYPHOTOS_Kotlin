@@ -18,7 +18,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
 
@@ -37,15 +36,14 @@ class MainActivity : AppCompatActivity() {
         getPhotoService?.getPhotos()?.enqueue(object : Callback<List<Photo>> {
             override fun onResponse(call: Call<List<Photo>>, response: Response<List<Photo>>) {
                 response.body()?.let { callPhotos ->
-                    //  list = response.body()!!
                     CreateRecycler(callPhotos)
-
                 }
             }
 
             override fun onFailure(call: Call<List<Photo>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "HOUSTON WE HAVE A PROBLEM"
-                    , Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@MainActivity, "HOUSTON WE HAVE A PROBLEM", Toast.LENGTH_SHORT
+                )
                     .show()
             }
         })
@@ -57,14 +55,11 @@ class MainActivity : AppCompatActivity() {
             val result = Bundle()
             result.putParcelable(KEY_PHOTO_BUNDLE, photos[it])
             val intent = Intent(this, SinglePhotoActivity::class.java)
-
             intent.putExtras(result)
             startActivity(intent)
         }
         val layoutManager = LinearLayoutManager(this)
-
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-
     }
 }

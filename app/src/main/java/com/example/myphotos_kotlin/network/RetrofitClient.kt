@@ -26,14 +26,12 @@ object RetrofitClient {
         }
         return instance
     }
-
 }
 
 class RetrofitClientWithComp {
     companion object {
         const val BASE_URL = "http://jsonplaceholder.typeicode.com"
         var retrofit: Retrofit? = null
-
         fun getInstance(): Retrofit? {
             if (retrofit == null) {
                 retrofit = Retrofit.Builder().baseUrl(RetrofitClient.BASE_URL)
@@ -41,6 +39,5 @@ class RetrofitClientWithComp {
             }
             return retrofit
         }
-
     }
 }
